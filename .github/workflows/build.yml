@@ -21,7 +21,7 @@ jobs:
       - name: Build
         run: |
           cd scripts/build-domains
-          chmod +x ../../bin/build-domain
+          chmod +x ../../bin/build-domains
           ../../bin/build-domains
 
       - name: Zip каждого подкаталога в dist/
