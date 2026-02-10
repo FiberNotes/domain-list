@@ -26,7 +26,6 @@ jobs:
 
       - name: Zip каждого подкаталога в dist/
         run: |
-          ls
           cd scripts/build-domains
           mkdir -p artifacts
           cd dist || { echo "Папка dist/ не найдена!"; exit 1; }
@@ -42,7 +41,7 @@ jobs:
           cd ..
 
       - name: Список артефактов
-        run: ls -lh artifacts/ || true
+        run: ls -lh scripts/build-domains/dist/artifacts/ || true
 
       - name: Создать / обновить GitHub Release
         uses: softprops/action-gh-release@v2
@@ -59,4 +58,4 @@ jobs:
             TAG: ${{ github.ref_name }}
 
           files: |
-            artifacts/*.zip
+            scripts/build-domains/dist/artifacts/*.zip
