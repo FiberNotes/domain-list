@@ -2,7 +2,7 @@ name: Truba
 
 on:
   push:
-    tags:
+    branches:
       - "v*"
 
 permissions:
@@ -21,7 +21,8 @@ jobs:
       - name: Build
         run: |
           cd scripts/build-domains
-          /bin/build-domain
+          chmod +x ../../bin/build-domains
+          ../../bin/build-domains
 
       - name: Zip каждого подкаталога в dist/
         run: |
@@ -41,9 +42,12 @@ jobs:
       - name: Список артефактов
         run: ls -lh artifacts/ || true
 
-      - name: Создать / обновить Release
+      - name: Создать / обновить GitHub Release
         uses: softprops/action-gh-release@v2
+
         with:
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
           fail_on_unmatched_files: false
 
           body: |
