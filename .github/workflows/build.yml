@@ -26,6 +26,8 @@ jobs:
 
       - name: Zip каждого подкаталога в dist/
         run: |
+          ls
+          cd scripts/build-domains
           mkdir -p artifacts
           cd dist || { echo "Папка dist/ не найдена!"; exit 1; }
 
