@@ -38,10 +38,12 @@ jobs:
             echo "Создан: ${name}.zip"
           done
 
+          ls
+
           cd ..
 
       - name: Список артефактов
-        run: ls -lh scripts/build-domains/dist/artifacts/ || true
+        run: ls -lh ./scripts/build-domains/dist/artifacts/ || true
 
       - name: Создать / обновить GitHub Release
         uses: softprops/action-gh-release@v2
@@ -58,4 +60,4 @@ jobs:
             TAG: ${{ github.ref_name }}
 
           files: |
-            scripts/build-domains/dist/artifacts/*.zip
+            ./scripts/build-domains/dist/artifacts/*.zip
