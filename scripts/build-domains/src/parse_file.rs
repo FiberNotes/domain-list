@@ -16,7 +16,8 @@ pub fn parse_file<P: AsRef<Path>>(path: P, cache: &Cache) -> Result<GeoSite, io:
         geo_site.country_code = Path::new(path)
             .file_stem()
             .and_then(|name| name.to_str().map(|s| s.to_string()))
-            .unwrap_or_default();
+            .unwrap_or_default()
+            .to_uppercase();
 
         let reader = io::BufReader::new(file);
 
