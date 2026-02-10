@@ -37,10 +37,10 @@ jobs:
           fail_on_unmatched_files: false
 
           body: |
-            ${{ github.event.head_commit.message }}
+            ${{ github.event.pull_request.body }}
 
             SHA:: ${{ github.sha }}
-            TAG: ${{ github.ref_name }}
+            TAG: ${{ github.event.pull_request.head.ref }}
 
           files: |
             ./scripts/build-domains/dist/*.dat
