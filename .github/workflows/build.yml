@@ -1,0 +1,56 @@
+name: Truba
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build
+        run: |
+          cd scripts/build-domains
+          /bin/build-domain
+
+      - name: Zip каждого подкаталога в dist/
+        run: |
+          mkdir -p artifacts
+          cd dist || { echo "Папка dist/ не найдена!"; exit 1; }
+
+          for dir in */; do
+            [ -d "$dir" ] || continue
+            name="${dir%/}"
+            
+            zip -r "../artifacts/${name}.zip" "$dir"
+            echo "Создан: ${name}.zip"
+          done
+
+          cd ..
+
+      - name: Список артефактов
+        run: ls -lh artifacts/ || true
+
+      - name: Создать / обновить Release
+        uses: softprops/action-gh-release@v2
+        with:
+          fail_on_unmatched_files: false
+
+          body: |
+            ${{ github.event.head_commit.message }}
+
+            SHA:: ${{ github.sha }}
+            TAG: ${{ github.ref_name }}
+
+          files: |
+            artifacts/*.zip
