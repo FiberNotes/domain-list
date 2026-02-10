@@ -20,8 +20,12 @@ jobs:
 
       - name: Build
         run: |
+          ls -la ./bin/build-domains
           cd scripts/build-domains
-          ls
+          ls -la ../../bin/build-domains
+          ls -la ../bin/build-domains
+          ls -la /bin/build-domains
+          ls -la bin/build-domains
           chmod +x ../../bin/build-domain
           ../../bin/build-domain
 
