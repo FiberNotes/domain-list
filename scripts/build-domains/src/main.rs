@@ -21,8 +21,6 @@ fn main() -> std::io::Result<()> {
         let mut geo_site_list = GeoSiteList::default();
         geo_site_list.entry.push(geo_site);
 
-        println!("{geo_site_list:?}");
-
         let pathname = Path::new(&path)
             .file_stem()
             .and_then(|name| name.to_str().map(|s| s.to_string()))
