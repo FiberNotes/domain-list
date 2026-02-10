@@ -1,1 +1,35 @@
 include:ai
+include:deepl
+include:games
+include:jetbrains
+include:meta
+include:news-media
+include:notion
+include:reddit
+include:spotify
+include:telegram
+include:tiktok
+include:whatsapp
+include:x
+
+# Расширение SponsorBlock для Youtube
+sponsor.ajay.app
+
+# 1080p для Twitch 
+usher.ttvnw.net
+gql.twitch.tv
+
+play.google.com
+pages.dev
+netflix.com
+linkedin.com
+canva.dev
+canva.com
+quora.com
+pornhub.com
+phncdn.com
+eporner.com
+fullhd.xxx
+fpvcdn.com
+ahcdn.com
+soundcloud.com
