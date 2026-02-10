@@ -20,10 +20,10 @@ jobs:
 
       - name: Build
         run: |
-          ls
           cd scripts/build-domains
           ls
-          ./bin/build-domain
+          chmod +x ../../bin/build-domain
+          ../../bin/build-domain
 
       - name: Zip каждого подкаталога в dist/
         run: |
