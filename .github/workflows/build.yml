@@ -1,15 +1,19 @@
 name: Truba
 
 on:
-  push:
+  pull_request:
+    types: [closed]
     branches:
-      - "v*"
+      - main
 
 permissions:
   contents: write
 
 jobs:
   build-and-release:
+    if: >
+      github.event.pull_request.merged == true &&
+      startsWith(github.event.pull_request.head.ref, 'v')
     runs-on: ubuntu-latest
 
     steps:
@@ -28,8 +32,8 @@ jobs:
         uses: softprops/action-gh-release@v2
 
         with:
-          tag_name: ${{ github.ref_name }}
-          name: Release ${{ github.ref_name }}
+          tag_name: ${{ github.event.pull_request.head.ref }}
+          name: ${{ github.event.pull_request.head.ref }}
           fail_on_unmatched_files: false
 
           body: |
