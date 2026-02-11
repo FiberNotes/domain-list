@@ -7,7 +7,7 @@ include:news-media
 include:notion
 include:reddit
 include:spotify
-include:telegram
+# include:telegram
 include:tiktok
 include:whatsapp
 include:x
