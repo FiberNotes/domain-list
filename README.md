@@ -18,6 +18,23 @@
    Домен указывается в формате: \["ext:&lt;config_name&gt;.dat:&lt;config_name&gt;"\]
 
    config_name можно найти в [релизах](https://github.com/FiberNotes/domain-list/releases).
+   
+
+   Также в релизе есть `domains.dat` в котором собраны все домены из `domains`. Его можно использовать для точечной настройки уже имеющегося конфига:
+   ```json
+   {
+     "inboundTag": ["redirect", "tproxy"],
+     "outboundTag": "direct",
+     "type": "field",
+     "domain": ["ext:domains.dat:telegram"]
+   },
+   {
+     "inboundTag": ["redirect", "tproxy"],
+     "outboundTag": "vless-reality",
+     "type": "field",
+     "domain": ["ext:alabama.dat:alabama"]
+   },
+   ```
 
 ## Контрибьют
 
