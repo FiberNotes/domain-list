@@ -33,5 +33,20 @@ fn main() -> std::io::Result<()> {
         file.write_all(&buf)?;
     }
 
+    let mut geo_site_list = GeoSiteList::default();
+
+    for entry in glob("../../domains/*").map_err(|e| io::Error::new(io::ErrorKind::Other, e))? {
+        let path = entry.map_err(|e| io::Error::new(io::ErrorKind::Other, e))?;
+        let geo_site = parse_file(&path, &mut cache)?;
+
+        geo_site_list.entry.push(geo_site);
+    }
+
+    let mut buf = Vec::new();
+    geo_site_list.encode(&mut buf)?;
+
+    let mut file = File::create(format!("./dist/domains.dat"))?;
+    file.write_all(&buf)?;
+
     Ok(())
 }
