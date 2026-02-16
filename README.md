@@ -2,9 +2,11 @@
 
 ## Использование
 
-1. Скачать нужный конфиг. Например: <https://github.com/FiberNotes/domain-list/releases/latest/download/alabama.dat>
-2. Разместить его в `/etc/xray/dat`
-3. Добавить правило для роутинга в Xray:
+1. Скачать нужный конфиг.
+```shell
+FILE=alabama.dat && wget -O "/opt/etc/xray/dat/$FILE" "https://github.com/FiberNotes/domain-list/releases/latest/download/$FILE"  
+```
+2. Добавить правило для роутинга в Xray:
 
    ```json
    {
