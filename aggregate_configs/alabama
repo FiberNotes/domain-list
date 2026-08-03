@@ -11,6 +11,8 @@ include:spotify
 include:tiktok
 include:whatsapp
 include:x
+include:telegram
+include:development
 
 # Расширение SponsorBlock для Youtube
 sponsor.ajay.app
